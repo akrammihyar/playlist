@@ -1,25 +1,22 @@
 import pandas as pd
 import streamlit as st
 
-st.markdown("""# What songs were popular when I was in high school?
-The algorithm doesn't get you, we get that a lot. Maybe you want to rediscover the top songs from your high school days. Or maybe you just don't want to mess with making your own playlist. 
+st.markdown("""# Quiz night?
+pick from the following list
 
-You can use this tool to find a pre-generated playlist of every song that made the Top 10 in the US for the years you select. 
-
-This originally appeared on [Datafantic.com](https://www.datafantic.com/what-songs-were-popular-when-i-was-in-high-school).
 """)
 
 df = pd.read_csv("playlists.csv")
-years = list(range(1958, 2022))
+years = list(range(1, 12))
 
-year_list = st.multiselect(label="Start Year", options=years, default= [1995, 2010])
+year_list = st.multiselect(label="Start Year", options=years, default= [1, 2])
 
 
 if st.button('Play'):
     if len(year_list) == 1:
-        playlist_name = f"Top US Singles: {year_list[0]}"
+        playlist_name = f"Card: {year_list[0]}"
     else:
-        playlist_name = f"Top US Singles: {year_list[0]}-{year_list[1]}"
+        playlist_name = f"Card: {year_list[0]}-{year_list[1]}"
 
     if df[df['name'] == playlist_name].shape[0] > 0:
         playlist = df[df['name'] == playlist_name].to_dict(orient='records')[0]
