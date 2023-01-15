@@ -1,32 +1,28 @@
 import pandas as pd
 import streamlit as st
 
-st.markdown("""# Date Night
-
-Test test test).
+st.markdown("""# Date night
 """)
 
 df = pd.read_csv("questions.csv")
-decks = list(range(1,3))
+years = list(range(1,3))
 
-decks_list = st.multiselect(label="Choose card Deck", options=decks, default= ['fun'])
-                                                                               
-selected_decks = st.multiselect(label="Choose card Deck", options=decks)
+year_list = st.multiselect(label="Start Year", options=years, default= ['fun'])
+
 
 if st.button('Play'):
-    if len(decks_list) == 1:
-         for decks in selected_decks:
-            id = df.loc[df['deck'] == decks, 'id']
-            st.write(f"Id for {decks} is {id}")
-    
-    if df[df['name'] == playlist_name].shape[0] > 0:
-        card = df[df['name'] == selected_decks].to_dict(orient='records')[0]
-        
+    if len(year_list) == 1:
+        playlist_name = f"Top US Singles: {year_list[0]}"
     else:
-        st.write("Please select at least one deck.")
- 
-    if isinstance(card):
-        link = f"### Your Spotify Playlist: [{card['name']}]({card['link']})"
+        playlist_name = f"Top US Singles: {year_list[0]}-{year_list[1]}"
+
+    if df[df['name'] == playlist_name].shape[0] > 0:
+        playlist = df[df['name'] == playlist_name].to_dict(orient='records')[0]
+    else:
+        playlist = "Ooops, it looks like we didn't make that playlist yet. Playlists with a range of 1-20 years were created. Try again with a more narrow year range."
+
+    if isinstance(playlist, dict):
+        link = f"### Your Spotify Playlist: [{playlist['name']}]({playlist['link']})"
         st.markdown(link, unsafe_allow_html=True)
     else:
-        st.markdown(card)
+        st.markdown(playlist)
