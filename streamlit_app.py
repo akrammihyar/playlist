@@ -17,9 +17,9 @@ year_list = st.multiselect(label="Start Year", options=years, default= [1995, 20
 
 if st.button('Play'):
     if len(year_list) == 1:
-        playlist_name = f"Top US Singles: {year_range[0]}"
+        playlist_name = f"Top US Singles: {year_list[0]}"
     else:
-        playlist_name = f"Top US Singles: {year_range[0]}-{year_range[1]}"
+        playlist_name = f"Top US Singles: {year_list[0]}-{year_list[1]}"
 
     if df[df['name'] == playlist_name].shape[0] > 0:
         playlist = df[df['name'] == playlist_name].to_dict(orient='records')[0]
