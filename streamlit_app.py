@@ -12,11 +12,11 @@ This originally appeared on [Datafantic.com](https://www.datafantic.com/what-son
 df = pd.read_csv("playlists.csv")
 years = list(range(1958, 2022))
 
-year_range = st.slider(label="Start Year", min_value=1958, max_value=2022, value=(1995, 2010))
+year_list = st.multiselect(label="Start Year", options=years, default= [1995, 2010])
 
 
-if st.button('Submit'):
-    if (int(year_range[0]) - int(year_range[1])) == 0:
+if st.button('Play'):
+    if len(year_list) == 1:
         playlist_name = f"Top US Singles: {year_range[0]}"
     else:
         playlist_name = f"Top US Singles: {year_range[0]}-{year_range[1]}"
