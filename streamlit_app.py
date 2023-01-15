@@ -8,7 +8,7 @@ Test test test ).
 df = pd.read_csv("questions.csv")
 decks = ['fun', 'date', 'truth']
 
-decks_list = st.multiselect(label="Choose card Deck", options=decks, default= ['fun])
+decks_list = st.multiselect(label="Choose card Deck", options=decks, default= ['fun'])
                                                                                
 selected_decks = st.multiselect(label="Select people", options=people)
 
