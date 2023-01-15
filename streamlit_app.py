@@ -21,7 +21,7 @@ if st.button('Play'):
     else:
         st.write("Please select at least one deck.")
  
-    if isinstance(card, dict):
+    if isinstance(card):
         link = f"### Your Spotify Playlist: [{card['name']}]({card['link']})"
         st.markdown(link, unsafe_allow_html=True)
     else:
