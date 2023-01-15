@@ -5,7 +5,7 @@ st.markdown("""# Date night
 """)
 
 df = pd.read_csv("questions.csv")
-years = list(range(1,3))
+years = ['fun', 'date', 'truth']
 
 year_list = st.multiselect(label="Start Year", options=years, default= ['fun'])
 
