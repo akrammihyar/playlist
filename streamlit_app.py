@@ -7,7 +7,7 @@ Test test test).
 """)
 
 df = pd.read_csv("questions.csv")
-decks = list(range('fun', 'date'))
+decks = list(range(1,3))
 
 decks_list = st.multiselect(label="Choose card Deck", options=decks, default= ['fun'])
                                                                                
@@ -18,6 +18,10 @@ if st.button('Play'):
          for decks in selected_decks:
             id = df.loc[df['deck'] == decks, 'id']
             st.write(f"Id for {decks} is {id}")
+    
+    if df[df['name'] == playlist_name].shape[0] > 0:
+        card = df[df['name'] == selected_decks].to_dict(orient='records')[0]
+        
     else:
         st.write("Please select at least one deck.")
  
