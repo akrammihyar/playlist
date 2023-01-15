@@ -11,7 +11,7 @@ decks = ['fun', 'date', 'truth']
 
 decks_list = st.multiselect(label="Choose card Deck", options=decks, default= ['fun'])
                                                                                
-selected_decks = st.multiselect(label="Select people", options=people)
+selected_decks = st.multiselect(label="Choose card Deck", options=decks)
 
 if st.button('Play'):
     if len(decks_list) == 1:
@@ -20,3 +20,9 @@ if st.button('Play'):
             st.write(f"Id for {decks} is {id}")
     else:
         st.write("Please select at least one deck.")
+ 
+if isinstance(card, dict):
+        link = f"### Your Spotify Playlist: [{card['name']}]({card['link']})"
+        st.markdown(link, unsafe_allow_html=True)
+    else:
+        st.markdown(card)
